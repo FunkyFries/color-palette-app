@@ -1,6 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+const StyledBox = styled("div")<{ background: string }>`
+  width: 20%;
+  height: 25%;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background: ${props => props.background};
+`;
+
 type Props = {
   background: string;
   name: string;
@@ -8,10 +18,10 @@ type Props = {
 
 const ColorBox: React.FC<Props> = props => {
   return (
-    <div style={{ background: props.background }}>
+    <StyledBox background={props.background}>
       <span>{props.name}</span>
       <span>MORE</span>
-    </div>
+    </StyledBox>
   );
 };
 

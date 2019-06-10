@@ -1,5 +1,13 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import ColorBox from "./ColorBox";
+
+const PaletteDiv = styled("div")`
+  height: 100vh;
+`;
+const ColorBoxes = styled("div")`
+  height: 90%;
+`;
 
 type Props = {
   colors: Array<{ name: string; color: string }>;
@@ -11,10 +19,9 @@ class Palette extends Component<Props> {
       <ColorBox key={color.name} background={color.color} name={color.name} />
     ));
     return (
-      <div>
-        <h1>Palette</h1>
-        {colorBoxes}
-      </div>
+      <PaletteDiv>
+        <ColorBoxes>{colorBoxes}</ColorBoxes>
+      </PaletteDiv>
     );
   }
 }

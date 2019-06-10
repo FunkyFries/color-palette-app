@@ -5,7 +5,7 @@ import seedPalettes from "./components/seedPalettes";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Palette {...seedPalettes[4]} />
+      <Palette {...seedPalettes[3]} />
     </div>
   );
 };
