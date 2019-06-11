@@ -7,6 +7,8 @@ const PaletteDiv = styled("div")`
 `;
 const ColorBoxes = styled("div")`
   height: 90%;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 type Props = {
