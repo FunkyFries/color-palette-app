@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 const StyledBox = styled("div")<{ background: string }>`
   width: 20%;
@@ -74,7 +75,9 @@ const ColorBox: React.FC<Props> = props => {
         <BoxContent>
           <span>{name}</span>
         </BoxContent>
-        <CopyButton>Copy</CopyButton>
+        <CopyToClipboard text={background}>
+          <CopyButton>Copy</CopyButton>
+        </CopyToClipboard>
       </CopyContainer>
       <MoreButton>More</MoreButton>
     </StyledBox>
