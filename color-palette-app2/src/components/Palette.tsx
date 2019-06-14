@@ -13,6 +13,12 @@ const ColorBoxes = styled("div")`
   flex-wrap: wrap;
 `;
 
+const SliderStyles = styled("div")`
+  width: 340px;
+  margin: 0 10px;
+  display: inline-block;
+`;
+
 interface Palette {
   paletteName: string;
   id: string;
@@ -40,13 +46,24 @@ class Palette extends Component<Props> {
     ));
     return (
       <PaletteDiv>
-        <Slider
-          defaultValue={level}
-          min={100}
-          max={900}
-          step={100}
-          onAfterChange={this.handleChange}
-        />
+        <SliderStyles>
+          <Slider
+            defaultValue={level}
+            min={100}
+            max={900}
+            step={100}
+            onAfterChange={this.handleChange}
+            trackStyle={{ backgroundColor: "transparent" }}
+            railStyle={{ height: "8px" }}
+            handleStyle={{
+              backgroundColor: "green",
+              outline: "none",
+              border: "2px solid green",
+              boxShadow: "none",
+              marginTop: "-3px"
+            }}
+          />
+        </SliderStyles>
         <ColorBoxes>{colorBoxes}</ColorBoxes>
       </PaletteDiv>
     );
