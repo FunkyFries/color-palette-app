@@ -3,6 +3,8 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { Link } from "@reach/router";
 import styled from "styled-components";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const StyledNavbar = styled("header")`
   display: flex;
@@ -32,11 +34,23 @@ const SliderStyles = styled("div")`
 type Props = {
   level: number;
   handleChange: any;
+  changeFormat: any;
 };
 
 export default class Navbar extends Component<Props> {
+  state = {
+    format: "hex"
+  };
+
+  changeFormat = (e: any) => {
+    this.setState({ format: e.target.value }, () => {
+      this.props.changeFormat(this.state.format);
+    });
+  };
+
   render() {
     const { level, handleChange } = this.props;
+    const { format } = this.state;
     return (
       <StyledNavbar>
         <Logo to="#">reactcolorpicker</Logo>
@@ -60,6 +74,12 @@ export default class Navbar extends Component<Props> {
             }}
           />
         </SliderStyles>
+        <Select value={format} onChange={this.changeFormat}>
+          <MenuItem value="hex">Hex - #fffff</MenuItem>
+          <MenuItem value="hsl">HSL - hsl(0, 0%, 100%)</MenuItem>
+          <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
+          <MenuItem value="rgba">RGBA - rgba(255,255,255,1)</MenuItem>
+        </Select>
       </StyledNavbar>
     );
   }

@@ -25,21 +25,30 @@ type Props = {
 
 class Palette extends Component<Props> {
   state = {
-    level: 500
+    level: 500,
+    format: "hex"
   };
 
   handleChange = (level: number) => {
     this.setState({ level });
   };
+  changeFormat = (val: string) => {
+    this.setState({ format: val });
+  };
+
   render() {
     const { colors } = this.props.palette;
-    const { level } = this.state;
+    const { level, format } = this.state;
     const colorBoxes = colors[level].map((color: any) => (
-      <ColorBox key={color.name} background={color.hex} name={color.name} />
+      <ColorBox key={color.name} background={color[format]} name={color.name} />
     ));
     return (
       <PaletteDiv>
-        <Navbar level={level} handleChange={this.handleChange} />
+        <Navbar
+          level={level}
+          handleChange={this.handleChange}
+          changeFormat={this.changeFormat}
+        />
         <ColorBoxes>{colorBoxes}</ColorBoxes>
       </PaletteDiv>
     );

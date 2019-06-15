@@ -2,14 +2,23 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import CopyToClipboard from "react-copy-to-clipboard";
 
-const StyledBox = styled("div")<{ background: string }>`
+// const ColorAnimation = styled.div.attrs({
+//   style: props => ({
+//     color: props.color
+//   })
+// })
+
+const StyledBox = styled("div").attrs<{ background: any }>(props => ({
+  style: {
+    background: props.background
+  }
+}))<{ background: string }>`
   width: 20%;
   height: 25%;
   margin: 0 auto;
   display: flex;
   position: relative;
   cursor: pointer;
-  background: ${props => props.background};
   text-transform: uppercase;
 `;
 
@@ -36,15 +45,23 @@ const BoxContent = styled("div")`
   letter-spacing: 1px;
 `;
 
-const CopyOverlay = styled("div")<{ active: boolean; background: string }>`
+// const StyledBox = styled("div").attrs<{ background: any }>(props => ({
+//   style: {
+//     background: props.background
+//   }
+// }))<{ background: string }>`
+
+const CopyOverlay = styled("div").attrs<{ background: any }>(props => ({
+  style: {
+    background: props.background
+  }
+}))<{ active: boolean; background: string }>`
   opacity: 0;
   z-index: 0;
   width: 100%;
   height: 100%;
   transform: scale(0.1);
-  background: ${props => props.background};
   transition: transform 0.3s ease-in-out;
-
   ${({ active }) =>
     active &&
     `
@@ -52,7 +69,7 @@ const CopyOverlay = styled("div")<{ active: boolean; background: string }>`
     transform: scale(9);
     z-index: 10;
     position: absolute;
-    `}
+    `};
 `;
 
 const CopyOverlayMessage = styled("div")<{ active: boolean }>`
