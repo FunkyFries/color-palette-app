@@ -8,7 +8,7 @@ interface paletteOptions {
   colors: any;
 }
 
-function generatePalette(starterPalette: paletteOptions) {
+function generatePalette(starterPalette: any) {
   let newPalette: any = {
     paletteName: starterPalette.paletteName,
     id: starterPalette.id,

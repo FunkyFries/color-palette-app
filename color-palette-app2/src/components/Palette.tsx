@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Navbar from "./Navbar";
 import styled from "styled-components/macro";
 import ColorBox from "./ColorBox";
+import seedPalettes from "./seedPalettes";
+import { generatePalette } from "./colorHelpers";
 
 const PaletteDiv = styled("div")`
   height: 100vh;
@@ -31,7 +33,8 @@ interface Palette {
 }
 
 type Props = {
-  palette: Palette;
+  id?: any;
+  path?: string;
 };
 
 class Palette extends Component<Props> {
@@ -40,15 +43,21 @@ class Palette extends Component<Props> {
     format: "hex"
   };
 
+  findPalette = (id: any) => {
+    return seedPalettes.find(function(palette) {
+      return palette.id === id;
+    });
+  };
+
   changeLevel = (level: number) => {
     this.setState({ level });
   };
   changeFormat = (val: string) => {
     this.setState({ format: val });
   };
-
   render() {
-    const { colors, paletteName, emoji } = this.props.palette;
+    const palette = generatePalette(this.findPalette(this.props.id));
+    const { colors, paletteName, emoji } = palette;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map((color: any) => (
       <ColorBox key={color.id} background={color[format]} name={color.name} />

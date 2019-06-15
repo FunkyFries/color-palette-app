@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
+import { Router, Redirect } from "@reach/router";
+import Home from "./components/Home";
 import Palette from "./components/Palette";
-import seedPalettes from "./components/seedPalettes";
-import { generatePalette } from "./components/colorHelpers";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <Palette palette={generatePalette(seedPalettes[4])} />
-    </div>
-  );
-};
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <Home path="/" />
+          <Palette path="/palette/:id" />
+          <Redirect default noThrow from="*" to="/" />
+        </Router>
+      </div>
+    );
+  }
+}
 
 export default App;
