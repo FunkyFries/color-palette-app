@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import CopyToClipboard from "react-copy-to-clipboard";
 
-// const ColorAnimation = styled.div.attrs({
-//   style: props => ({
-//     color: props.color
-//   })
-// })
-
 const StyledBox = styled("div").attrs<{ background: any }>(props => ({
   style: {
     background: props.background
@@ -44,12 +38,6 @@ const BoxContent = styled("div")`
   font-size: 12px;
   letter-spacing: 1px;
 `;
-
-// const StyledBox = styled("div").attrs<{ background: any }>(props => ({
-//   style: {
-//     background: props.background
-//   }
-// }))<{ background: string }>`
 
 const CopyOverlay = styled("div").attrs<{ background: any }>(props => ({
   style: {

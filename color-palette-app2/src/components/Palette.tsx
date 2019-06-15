@@ -29,7 +29,7 @@ class Palette extends Component<Props> {
     format: "hex"
   };
 
-  handleChange = (level: number) => {
+  changeLevel = (level: number) => {
     this.setState({ level });
   };
   changeFormat = (val: string) => {
@@ -46,7 +46,7 @@ class Palette extends Component<Props> {
       <PaletteDiv>
         <Navbar
           level={level}
-          handleChange={this.handleChange}
+          changeLevel={this.changeLevel}
           changeFormat={this.changeFormat}
         />
         <ColorBoxes>{colorBoxes}</ColorBoxes>
