@@ -1,15 +1,26 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import ColorBox from "./ColorBox";
 
 const PaletteDiv = styled("div")`
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 const ColorBoxes = styled("div")`
   height: 90%;
   display: flex;
   flex-wrap: wrap;
+`;
+
+const Footer = styled("footer")`
+  background-color: white;
+  height: 5vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: bold;
 `;
 
 interface Palette {
@@ -37,10 +48,10 @@ class Palette extends Component<Props> {
   };
 
   render() {
-    const { colors } = this.props.palette;
+    const { colors, paletteName, emoji } = this.props.palette;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map((color: any) => (
-      <ColorBox key={color.name} background={color[format]} name={color.name} />
+      <ColorBox key={color.id} background={color[format]} name={color.name} />
     ));
     return (
       <PaletteDiv>
@@ -50,6 +61,10 @@ class Palette extends Component<Props> {
           changeFormat={this.changeFormat}
         />
         <ColorBoxes>{colorBoxes}</ColorBoxes>
+        <Footer>
+          {paletteName}
+          <span style={{ fontSize: "1.5rem", margin: "0 1rem" }}>{emoji}</span>
+        </Footer>
       </PaletteDiv>
     );
   }

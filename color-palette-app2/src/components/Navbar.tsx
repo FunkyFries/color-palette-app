@@ -85,7 +85,10 @@ export default class Navbar extends Component<Props> {
         <Select
           value={format}
           onChange={this.changeFormat}
-          style={{ marginLeft: "auto", marginRight: "1rem" }}
+          style={{
+            marginLeft: "auto",
+            marginRight: "1rem"
+          }}
         >
           <MenuItem value="hex">Hex - #fffff</MenuItem>
           <MenuItem value="hsl">HSL - hsl(0, 0%, 100%)</MenuItem>
