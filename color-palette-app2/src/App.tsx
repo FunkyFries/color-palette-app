@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Router, Redirect } from "@reach/router";
+import seedPalettes from "./components/seedPalettes";
 import Home from "./components/Home";
 import Palette from "./components/Palette";
 
@@ -8,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Home path="/" />
+          <Home path="/" palettes={seedPalettes} />
           <Palette path="/palette/:id" />
           <Redirect default noThrow from="*" to="/" />
         </Router>

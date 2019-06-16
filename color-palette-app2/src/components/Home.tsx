@@ -1,11 +1,19 @@
 import React, { Component } from "react";
-import { RouteComponentProps } from "@reach/router";
+import { Link, RouteComponentProps } from "@reach/router";
 
-export default class Home extends Component<RouteComponentProps> {
+type Props = {
+  palettes: any;
+};
+
+export default class Home extends Component<Props & RouteComponentProps> {
   render() {
+    const { palettes } = this.props;
     return (
       <div>
-        <h1>Hi!</h1>
+        <h1>React Colors</h1>
+        {palettes.map((palette: any) => (
+          <Link to={`palette/${palette.id}`}>{palette.paletteName}</Link>
+        ))}
       </div>
     );
   }

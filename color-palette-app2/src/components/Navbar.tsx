@@ -27,6 +27,10 @@ const Logo = styled(Link)`
   align-items: center;
   text-decoration: none;
   color: black;
+  transition: all 0.4s ease-in-out;
+  :hover {
+    background-color: #e9e9e9;
+  }
 `;
 
 const SliderStyles = styled("div")`
@@ -61,7 +65,7 @@ export default class Navbar extends Component<Props> {
     const { format } = this.state;
     return (
       <StyledNavbar>
-        <Logo to="#">reactcolorpicker</Logo>
+        <Logo to="/">reactcolorpicker</Logo>
         <SliderStyles>
           <span>Level: {level}</span>
           <Slider

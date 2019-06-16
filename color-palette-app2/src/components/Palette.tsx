@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import ColorBox from "./ColorBox";
 import seedPalettes from "./seedPalettes";
 import { generatePalette } from "./colorHelpers";
+import { RouteComponentProps } from "@reach/router";
 
 const PaletteDiv = styled("div")`
   height: 100vh;
@@ -25,19 +26,14 @@ const Footer = styled("footer")`
   font-weight: bold;
 `;
 
-interface Palette {
-  paletteName: string;
-  id: string;
-  emoji: string;
-  colors: { [num: number]: Array<Object> };
-}
-
 type Props = {
-  id?: any;
-  path?: string;
+  paletteName?: string;
+  id?: string;
+  emoji?: string;
+  colors?: { [num: number]: Array<Object> };
 };
 
-class Palette extends Component<Props> {
+class Palette extends Component<Props & RouteComponentProps> {
   state = {
     level: 500,
     format: "hex"
