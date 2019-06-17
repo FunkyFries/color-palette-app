@@ -3,6 +3,7 @@ import { Router, Redirect } from "@reach/router";
 import seedPalettes from "./components/seedPalettes";
 import Home from "./components/Home";
 import Palette from "./components/Palette";
+import SingleColorPalette from "./components/SingleColorPalette";
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <Router>
           <Home path="/" palettes={seedPalettes} />
           <Palette path="/palette/:id" />
+          <SingleColorPalette path="/palette/:paletteId/:colorId" />
           <Redirect default noThrow from="*" to="/" />
         </Router>
       </div>

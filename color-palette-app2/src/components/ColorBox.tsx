@@ -125,6 +125,8 @@ const MoreButton = styled("button")`
 type Props = {
   background: string;
   name: string;
+  id: string;
+  navigate: any;
 };
 
 type State = {
@@ -140,6 +142,11 @@ class ColorBox extends Component<Props, State> {
     this.setState({ active: true }, () => {
       setTimeout(() => this.setState({ active: false }), 1500);
     });
+  };
+
+  handleMoreClick = (e: any) => {
+    e.stopPropagation();
+    this.props.navigate(this.props.id);
   };
 
   render() {
@@ -161,7 +168,7 @@ class ColorBox extends Component<Props, State> {
             <CopyButton>Copy</CopyButton>
           </CopyToClipboard>
         </CopyContainer>
-        <MoreButton>More</MoreButton>
+        <MoreButton onClick={this.handleMoreClick}>More</MoreButton>
       </StyledBox>
     );
   }

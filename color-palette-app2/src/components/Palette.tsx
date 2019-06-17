@@ -56,7 +56,13 @@ class Palette extends Component<Props & RouteComponentProps> {
     const { colors, paletteName, emoji } = palette;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map((color: any) => (
-      <ColorBox key={color.id} background={color[format]} name={color.name} />
+      <ColorBox
+        key={color.id}
+        background={color[format]}
+        name={color.name}
+        id={color.id}
+        navigate={this.props.navigate}
+      />
     ));
     return (
       <PaletteDiv>
