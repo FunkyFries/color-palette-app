@@ -126,7 +126,8 @@ type Props = {
   background: string;
   name: string;
   id: string;
-  navigate: any;
+  navigate?: any;
+  showButton: boolean;
 };
 
 type State = {
@@ -150,7 +151,7 @@ class ColorBox extends Component<Props, State> {
   };
 
   render() {
-    const { background, name } = this.props;
+    const { background, name, showButton } = this.props;
     return (
       <StyledBox background={background}>
         <CopyOverlay background={background} active={this.state.active} />
@@ -168,7 +169,9 @@ class ColorBox extends Component<Props, State> {
             <CopyButton>Copy</CopyButton>
           </CopyToClipboard>
         </CopyContainer>
-        <MoreButton onClick={this.handleMoreClick}>More</MoreButton>
+        {showButton && (
+          <MoreButton onClick={this.handleMoreClick}>More</MoreButton>
+        )}
       </StyledBox>
     );
   }

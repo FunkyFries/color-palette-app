@@ -51,9 +51,11 @@ class Palette extends Component<Props & RouteComponentProps> {
   changeFormat = (val: string) => {
     this.setState({ format: val });
   };
+
+  palette = generatePalette(this.findPalette(this.props.id));
+
   render() {
-    const palette = generatePalette(this.findPalette(this.props.id));
-    const { colors, paletteName, emoji } = palette;
+    const { colors, paletteName, emoji } = this.palette;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map((color: any) => (
       <ColorBox
@@ -62,6 +64,7 @@ class Palette extends Component<Props & RouteComponentProps> {
         name={color.name}
         id={color.id}
         navigate={this.props.navigate}
+        showButton
       />
     ));
     return (
