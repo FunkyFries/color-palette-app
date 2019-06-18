@@ -39,8 +39,9 @@ const SliderStyles = styled("div")`
 `;
 
 type Props = {
-  level: number;
-  changeLevel: any;
+  level?: number;
+  changeLevel?: any;
+  showingAllColors: boolean;
   changeFormat: any;
 };
 
@@ -61,31 +62,33 @@ export default class Navbar extends Component<Props> {
   };
 
   render() {
-    const { level, changeLevel } = this.props;
+    const { level, changeLevel, showingAllColors } = this.props;
     const { format } = this.state;
     return (
       <StyledNavbar>
         <Logo to="/">reactcolorpicker</Logo>
-        <SliderStyles>
-          <span>Level: {level}</span>
-          <Slider
-            style={{ width: "340px", margin: "0 10px" }}
-            defaultValue={level}
-            min={100}
-            max={900}
-            step={100}
-            onAfterChange={changeLevel}
-            trackStyle={{ backgroundColor: "transparent" }}
-            railStyle={{ height: "8px" }}
-            handleStyle={{
-              backgroundColor: "green",
-              outline: "none",
-              border: "2px solid green",
-              boxShadow: "none",
-              marginTop: "-3px"
-            }}
-          />
-        </SliderStyles>
+        {showingAllColors && (
+          <SliderStyles>
+            <span>Level: {level}</span>
+            <Slider
+              style={{ width: "340px", margin: "0 10px" }}
+              defaultValue={level}
+              min={100}
+              max={900}
+              step={100}
+              onAfterChange={changeLevel}
+              trackStyle={{ backgroundColor: "transparent" }}
+              railStyle={{ height: "8px" }}
+              handleStyle={{
+                backgroundColor: "green",
+                outline: "none",
+                border: "2px solid green",
+                boxShadow: "none",
+                marginTop: "-3px"
+              }}
+            />
+          </SliderStyles>
+        )}
         <Select
           value={format}
           onChange={this.changeFormat}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import { RouteComponentProps } from "@reach/router";
 import { generatePalette } from "./colorHelpers";
 import styled from "styled-components";
@@ -18,15 +19,6 @@ const ColorBoxes = styled("div")`
   flex-wrap: wrap;
 `;
 
-const Footer = styled("footer")`
-  background-color: white;
-  height: 5vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-weight: bold;
-`;
-
 type Props = {
   paletteName?: string;
   paletteId?: string;
@@ -38,6 +30,10 @@ type Props = {
 export default class SingleColorPalette extends Component<
   RouteComponentProps & Props
 > {
+  state = {
+    format: "hex"
+  };
+
   findPalette = (id: any) => {
     return seedPalettes.find(function(palette) {
       return palette.id === id;
@@ -53,29 +49,28 @@ export default class SingleColorPalette extends Component<
     }
     return shades.slice(1);
   };
+  changeFormat = (val: string) => {
+    this.setState({ format: val });
+  };
   palette = generatePalette(this.findPalette(this.props.paletteId));
   shades = this.gatherShades(this.palette, this.props.colorId);
+
   render() {
-    console.log(this.shades);
+    const { paletteName, emoji } = this.palette;
     const colorBoxes = this.shades.map((color: any) => (
       <ColorBox
-        background={color.hex}
+        background={color[this.state.format]}
         name={color.name}
         id={color.name}
         key={color.name}
         showButton={false}
       />
     ));
-    console.log(colorBoxes);
     return (
       <PaletteDiv>
+        <Navbar changeFormat={this.changeFormat} showingAllColors={false} />
         <ColorBoxes>{colorBoxes}</ColorBoxes>
-        <Footer>
-          {this.props.paletteName}
-          <span style={{ fontSize: "1.5rem", margin: "0 1rem" }}>
-            {this.props.emoji}
-          </span>
-        </Footer>
+        <Footer paletteName={paletteName} emoji={emoji} />
       </PaletteDiv>
     );
   }

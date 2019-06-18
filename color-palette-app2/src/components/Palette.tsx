@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import styled from "styled-components/macro";
 import ColorBox from "./ColorBox";
 import seedPalettes from "./seedPalettes";
@@ -15,15 +16,6 @@ const ColorBoxes = styled("div")`
   height: 90%;
   display: flex;
   flex-wrap: wrap;
-`;
-
-const Footer = styled("footer")`
-  background-color: white;
-  height: 5vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-weight: bold;
 `;
 
 type Props = {
@@ -73,12 +65,10 @@ class Palette extends Component<Props & RouteComponentProps> {
           level={level}
           changeLevel={this.changeLevel}
           changeFormat={this.changeFormat}
+          showingAllColors={true}
         />
         <ColorBoxes>{colorBoxes}</ColorBoxes>
-        <Footer>
-          {paletteName}
-          <span style={{ fontSize: "1.5rem", margin: "0 1rem" }}>{emoji}</span>
-        </Footer>
+        <Footer paletteName={paletteName} emoji={emoji} />
       </PaletteDiv>
     );
   }
