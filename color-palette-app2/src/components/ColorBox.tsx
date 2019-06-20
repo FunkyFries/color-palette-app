@@ -8,8 +8,7 @@ const StyledBox = styled("div").attrs<{ background: any }>(props => ({
   }
 }))<{ background: string }>`
   width: 20%;
-  height: 25%;
-  margin: 0 auto;
+  margin: 0;
   display: flex;
   position: relative;
   cursor: pointer;
@@ -128,6 +127,7 @@ type Props = {
   id: string;
   navigate?: any;
   showButton: boolean;
+  style?: any;
 };
 
 type State = {
@@ -152,14 +152,13 @@ class ColorBox extends Component<Props, State> {
 
   render() {
     const { background, name, showButton } = this.props;
+    const { active } = this.state;
     return (
       <StyledBox background={background}>
-        <CopyOverlay background={background} active={this.state.active} />
-        <CopyOverlayMessage active={this.state.active}>
+        <CopyOverlay background={background} active={active} />
+        <CopyOverlayMessage active={active}>
           <H1>Copied!</H1>
-          <p style={{ fontWeight: 200, fontSize: "1.5rem" }}>
-            {this.props.background}
-          </p>
+          <p style={{ fontWeight: 200, fontSize: "1.5rem" }}>{background}</p>
         </CopyOverlayMessage>
         <CopyContainer>
           <BoxContent>
