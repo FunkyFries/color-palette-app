@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import styled from "styled-components/macro";
 import CopyToClipboard from "react-copy-to-clipboard";
+import chroma from "chroma-js";
 
-const StyledBox = styled("div").attrs<{ background: any }>(props => ({
+const StyledBox = styled("div").attrs<{
+  background: any;
+  isDarkColor: boolean;
+}>(props => ({
   style: {
-    background: props.background
+    background: props.background,
+    color: props.isDarkColor ? "white" : "black"
   }
-}))<{ background: string }>`
+}))<{ background: string; isDarkColor: boolean }>`
   width: 20%;
   margin: 0;
   display: flex;
@@ -33,7 +38,6 @@ const BoxContent = styled("div")`
   left: 0;
   bottom: 0;
   padding: 10px;
-  color: black;
   font-size: 12px;
   letter-spacing: 1px;
 `;
@@ -72,7 +76,7 @@ const CopyOverlayMessage = styled("div")<{ active: boolean }>`
   flex-direction: column;
   font-size: 2rem;
   transform: scale(0.1);
-  color: white;
+  color: inherit;
 
   ${({ active }) =>
     active &&
@@ -86,6 +90,7 @@ const CopyOverlayMessage = styled("div")<{ active: boolean }>`
 `;
 
 const CopyButton = styled("button")`
+  color: inherit;
   width: 100px;
   height: 30px;
   position: absolute;
@@ -98,7 +103,6 @@ const CopyButton = styled("button")`
   outline: none;
   background: rgba(255, 255, 255, 0.3);
   font-size: 1rem;
-  color: white;
   border: none;
   opacity: 0;
   text-transform: inherit;
@@ -110,12 +114,12 @@ const CopyButton = styled("button")`
 `;
 
 const MoreButton = styled("button")`
+  color: inherit;
   background: rgba(255, 255, 255, 0.3);
   position: absolute;
   border: none;
   right: 0;
   bottom: 0;
-  color: white;
   width: 60px;
   height: 30px;
   text-transform: inherit;
@@ -153,8 +157,9 @@ class ColorBox extends Component<Props, State> {
   render() {
     const { background, name, showButton } = this.props;
     const { active } = this.state;
+    const isDarkColor = chroma(background).luminance() <= 0.08;
     return (
-      <StyledBox background={background}>
+      <StyledBox background={background} isDarkColor={isDarkColor}>
         <CopyOverlay background={background} active={active} />
         <CopyOverlayMessage active={active}>
           <H1>Copied!</H1>
