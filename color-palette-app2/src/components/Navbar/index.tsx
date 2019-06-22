@@ -1,42 +1,12 @@
 import React, { Component } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { Link } from "@reach/router";
-import styled from "styled-components/macro";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
-
-const StyledNavbar = styled("header")`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 6vh;
-`;
-
-const Logo = styled(Link)`
-  margin-right: 15px;
-  padding: 0 13px;
-  font-size: 22px;
-  background-color: #eceff1;
-  font-family: Roboto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: black;
-  transition: all 0.4s ease-in-out;
-  :hover {
-    background-color: #e9e9e9;
-  }
-`;
-
-const SliderStyles = styled("div")`
-  display: flex;
-  align-items: center;
-`;
+import { StyledNavbar, Logo, SliderStyles } from "./style";
 
 type Props = {
   level?: number;

@@ -1,22 +1,11 @@
 import React, { Component } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import styled from "styled-components/macro";
-import ColorBox from "./ColorBox";
-import seedPalettes from "./seedPalettes";
-import { generatePalette } from "./colorHelpers";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
+import ColorBox from "../ColorBox";
+import seedPalettes from "../Helpers/seedPalettes";
+import { generatePalette } from "../Helpers/colorHelpers";
 import { RouteComponentProps } from "@reach/router";
-
-const PaletteDiv = styled("div")`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-const ColorBoxes = styled("div")`
-  height: 90%;
-  display: flex;
-  flex-wrap: wrap;
-`;
+import { PaletteDiv, ColorBoxes } from "./style";
 
 type Props = {
   paletteName?: string;

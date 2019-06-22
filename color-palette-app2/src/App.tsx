@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Router, Redirect } from "@reach/router";
-import seedPalettes from "./components/seedPalettes";
-import Home from "./components/Home";
-import Palette from "./components/Palette";
-import SingleColorPalette from "./components/SingleColorPalette";
+import seedPalettes from "./components/Helpers/seedPalettes";
+import Home from "./components/Home/index";
+import Palette from "./components/Palette/index";
+import SingleColorPalette from "./components/SingleColorPalette/index";
 
 class App extends Component {
   render() {
