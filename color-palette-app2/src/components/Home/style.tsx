@@ -20,7 +20,12 @@ export const Nav = styled("nav")`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   color: white;
+  > a {
+    color: white;
+    padding-top: 10px;
+  }
 `;
 
 export const Palettes = styled("div")`

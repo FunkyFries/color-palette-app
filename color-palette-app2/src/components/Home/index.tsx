@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { RouteComponentProps, navigate } from "@reach/router";
+import { RouteComponentProps, navigate, Link } from "@reach/router";
 import { StyledHome, Container, Nav, Palettes } from "./style";
 import MiniPalette from "../MiniPalette";
 
@@ -18,6 +18,7 @@ export default class Home extends Component<Props & RouteComponentProps> {
         <Container>
           <Nav>
             <h1>React Colors</h1>
+            <Link to="palette/new">Create New Palette</Link>
           </Nav>
           <Palettes>
             {palettes.map((palette: any) => (
