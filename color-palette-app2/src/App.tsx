@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Router, Redirect } from "@reach/router";
 import seedPalettes from "./components/Helpers/seedPalettes";
 import Home from "./components/Home/index";
-import NewPalette from "./components/NewPalette/index";
+import { NewPalette } from "./components/NewPalette/index";
 import Palette from "./components/Palette/index";
 import SingleColorPalette from "./components/SingleColorPalette/index";
 
