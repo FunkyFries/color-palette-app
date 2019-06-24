@@ -16,6 +16,8 @@ import { useStyles } from "./style";
 export const NewPalette: React.FC<RouteComponentProps> = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [color, setColor] = React.useState("teal");
+  const [colors, addColor] = React.useState(["purple", "#e15764"]);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -23,6 +25,14 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
 
   function handleDrawerClose() {
     setOpen(false);
+  }
+
+  function handleColorChange(newColor: any) {
+    setColor(newColor.hex);
+  }
+
+  function handleAddColor() {
+    addColor([...colors, color]);
   }
 
   return (
@@ -72,11 +82,13 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
             Random Color
           </Button>
         </div>
-        <ChromePicker
-          color="purple"
-          onChangeComplete={newColor => console.log(newColor)}
-        />
-        <Button variant="contained" color="primary">
+        <ChromePicker color={color} onChangeComplete={handleColorChange} />
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ backgroundColor: color }}
+          onClick={handleAddColor}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -86,6 +98,13 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
         })}
       >
         <div className={classes.drawerHeader} />
+        <ul>
+          {colors.map(c => (
+            <li style={{ background: c }} key={c}>
+              {c}
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   );
