@@ -15,6 +15,7 @@
     "@types/react-color": "^3.0.1",
     "@types/react-copy-to-clipboard": "^4.2.6",
     "@types/react-dom": "16.8.4",
+    "@types/react-material-ui-form-validator": "^2.0.1",
     "@types/styled-components": "^4.1.16",
     "chroma-js": "^2.0.3",
     "rc-slider": "^8.6.13",
@@ -22,6 +23,7 @@
     "react-color": "^2.17.3",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.6",
+    "react-material-ui-form-validator": "^2.0.9",
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.1",
     "typescript": "3.5.1"
@@ -49,6 +51,7 @@
   },
   "devDependencies": {
     "babel-plugin-macros": "^2.6.1",
-    "babel-plugin-styled-components": "^1.10.0"
+    "babel-plugin-styled-components": "^1.10.0",
+    "eslint-plugin-react-hooks": "^1.6.1"
   }
 }

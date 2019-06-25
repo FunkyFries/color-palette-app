@@ -11,13 +11,31 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { ChromePicker } from "react-color";
+import DraggableColorBox from "../DraggableColorBox/index";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useStyles } from "./style";
 
 export const NewPalette: React.FC<RouteComponentProps> = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [color, setColor] = React.useState("teal");
-  const [colors, addColor] = React.useState(["purple", "#e15764"]);
+  const [currentColor, setColor] = React.useState("teal");
+  const [colors, addColor] = React.useState([
+    { name: "purple", color: "purple" },
+    { name: "Salmon", color: "#e15764" }
+  ]);
+  const [newName, changeNewName] = React.useState("");
+
+  React.useEffect(() => {
+    ValidatorForm.addValidationRule("isColorNameUnique", value => {
+      return colors.every(
+        ({ name }) => name.toLowerCase() !== value.toLowerCase()
+      );
+    });
+
+    ValidatorForm.addValidationRule("isColorUnique", () => {
+      return colors.every(({ color }) => color !== currentColor);
+    });
+  }, [colors, currentColor]);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -32,7 +50,16 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
   }
 
   function handleAddColor() {
-    addColor([...colors, color]);
+    const newColor = {
+      name: newName,
+      color: currentColor
+    };
+    addColor([...colors, newColor]);
+    changeNewName("");
+  }
+
+  function handleNewNameChange(e: any) {
+    changeNewName(e.target.value);
   }
 
   return (
@@ -82,15 +109,31 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
             Random Color
           </Button>
         </div>
-        <ChromePicker color={color} onChangeComplete={handleColorChange} />
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ backgroundColor: color }}
-          onClick={handleAddColor}
-        >
-          Add Color
-        </Button>
+        <ChromePicker
+          color={currentColor}
+          onChangeComplete={handleColorChange}
+        />
+        <ValidatorForm onSubmit={handleAddColor} instantValidate={false}>
+          <TextValidator
+            name="newColorName"
+            value={newName}
+            onChange={handleNewNameChange}
+            validators={["required", "isColorNameUnique", "isColorUnique"]}
+            errorMessages={[
+              "this field is required",
+              "Color name must be unique",
+              "Color must be unique"
+            ]}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ backgroundColor: currentColor }}
+            type="submit"
+          >
+            Add Color
+          </Button>
+        </ValidatorForm>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -98,13 +141,9 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <ul>
-          {colors.map(c => (
-            <li style={{ background: c }} key={c}>
-              {c}
-            </li>
-          ))}
-        </ul>
+        {colors.map(c => (
+          <DraggableColorBox color={c.color} name={c.name} key={c.name} />
+        ))}
       </main>
     </div>
   );
