@@ -5,7 +5,6 @@ import Footer from "../Footer";
 import { RouteComponentProps } from "@reach/router";
 import { generatePalette } from "../Helpers/colorHelpers";
 import { PaletteDiv, ColorBoxes, GoBackLink, StyledBox } from "./style";
-import seedPalettes from "../Helpers/seedPalettes";
 
 type Props = {
   paletteName?: string;
@@ -13,6 +12,7 @@ type Props = {
   colorId?: string;
   emoji?: string;
   colors?: { [num: number]: Array<Object> };
+  palettes?: any;
 };
 
 export default class SingleColorPalette extends Component<
@@ -23,7 +23,7 @@ export default class SingleColorPalette extends Component<
   };
 
   findPalette = (id: any) => {
-    return seedPalettes.find(function(palette) {
+    return this.props.palettes.find(function(palette: any) {
       return palette.id === id;
     });
   };

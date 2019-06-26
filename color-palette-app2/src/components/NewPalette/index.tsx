@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteComponentProps } from "@reach/router";
+import { RouteComponentProps, navigate } from "@reach/router";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,7 +15,9 @@ import DraggableColorBox from "../DraggableColorBox/index";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useStyles } from "./style";
 
-export const NewPalette: React.FC<RouteComponentProps> = () => {
+export const NewPalette: React.FC<
+  RouteComponentProps & { savePalette: any }
+> = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [currentColor, setColor] = React.useState("teal");
@@ -62,11 +64,23 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
     changeNewName(e.target.value);
   }
 
+  function handleSubmit() {
+    const newName = "New Test Palette";
+    const newPalette = {
+      paletteName: newName,
+      colors: colors,
+      id: newName.toLowerCase().replace(/ /g, "-")
+    };
+    props.savePalette(newPalette);
+    navigate("../");
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="default"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
         })}
@@ -84,6 +98,9 @@ export const NewPalette: React.FC<RouteComponentProps> = () => {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

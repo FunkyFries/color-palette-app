@@ -7,14 +7,23 @@ import Palette from "./components/Palette/index";
 import SingleColorPalette from "./components/SingleColorPalette/index";
 
 class App extends Component {
+  state = {
+    palettes: seedPalettes
+  };
+  savePalette = (newPalette: any) => {
+    this.setState({ palettes: [...this.state.palettes, newPalette] });
+  };
   render() {
     return (
       <div className="App">
         <Router>
-          <Home path="/" palettes={seedPalettes} />
-          <NewPalette path="/palette/new" />
-          <Palette path="/palette/:id" />
-          <SingleColorPalette path="/palette/:paletteId/:colorId" />
+          <Home path="/" palettes={this.state.palettes} />
+          <NewPalette path="/palette/new" savePalette={this.savePalette} />
+          <Palette path="/palette/:id" palettes={this.state.palettes} />
+          <SingleColorPalette
+            path="/palette/:paletteId/:colorId"
+            palettes={this.state.palettes}
+          />
           <Redirect default noThrow from="*" to="/" />
         </Router>
       </div>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import ColorBox from "../ColorBox";
-import seedPalettes from "../Helpers/seedPalettes";
 import { generatePalette } from "../Helpers/colorHelpers";
 import { RouteComponentProps } from "@reach/router";
 import { PaletteDiv, ColorBoxes } from "./style";
@@ -12,6 +11,7 @@ type Props = {
   id?: string;
   emoji?: string;
   colors?: { [num: number]: Array<Object> };
+  palettes?: any;
 };
 
 class Palette extends Component<Props & RouteComponentProps> {
@@ -21,7 +21,7 @@ class Palette extends Component<Props & RouteComponentProps> {
   };
 
   findPalette = (id: any) => {
-    return seedPalettes.find(function(palette) {
+    return this.props.palettes.find(function(palette: any) {
       return palette.id === id;
     });
   };
