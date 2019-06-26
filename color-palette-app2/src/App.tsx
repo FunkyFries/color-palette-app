@@ -18,7 +18,11 @@ class App extends Component {
       <div className="App">
         <Router>
           <Home path="/" palettes={this.state.palettes} />
-          <NewPalette path="/palette/new" savePalette={this.savePalette} />
+          <NewPalette
+            path="/palette/new"
+            savePalette={this.savePalette}
+            palettes={this.state.palettes}
+          />
           <Palette path="/palette/:id" palettes={this.state.palettes} />
           <SingleColorPalette
             path="/palette/:paletteId/:colorId"

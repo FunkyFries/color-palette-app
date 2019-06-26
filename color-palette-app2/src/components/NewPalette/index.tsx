@@ -16,7 +16,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useStyles } from "./style";
 
 export const NewPalette: React.FC<
-  RouteComponentProps & { savePalette: any }
+  RouteComponentProps & { savePalette: any; palettes: any }
 > = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -25,7 +25,10 @@ export const NewPalette: React.FC<
     { name: "purple", color: "purple" },
     { name: "Salmon", color: "#e15764" }
   ]);
-  const [newName, changeNewName] = React.useState("");
+  const [names, changeName] = React.useState({
+    newName: "",
+    newPaletteName: ""
+  });
 
   React.useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", value => {
@@ -37,7 +40,14 @@ export const NewPalette: React.FC<
     ValidatorForm.addValidationRule("isColorUnique", () => {
       return colors.every(({ color }) => color !== currentColor);
     });
-  }, [colors, currentColor]);
+
+    ValidatorForm.addValidationRule("PaletteNameUnique", value => {
+      return props.palettes.every(
+        ({ paletteName }: { paletteName: string }) =>
+          paletteName.toLowerCase() !== value.toLowerCase()
+      );
+    });
+  }, [colors, currentColor, props.palettes]);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -53,23 +63,30 @@ export const NewPalette: React.FC<
 
   function handleAddColor() {
     const newColor = {
-      name: newName,
+      name: names.newName,
       color: currentColor
     };
     addColor([...colors, newColor]);
-    changeNewName("");
+    changeName(prev => ({
+      ...prev,
+      newName: ""
+    }));
   }
 
-  function handleNewNameChange(e: any) {
-    changeNewName(e.target.value);
+  function handleChange(e: any) {
+    e.persist();
+    changeName(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
   }
 
   function handleSubmit() {
-    const newName = "New Test Palette";
+    const { newPaletteName } = names;
     const newPalette = {
-      paletteName: newName,
+      paletteName: newPaletteName,
       colors: colors,
-      id: newName.toLowerCase().replace(/ /g, "-")
+      id: newPaletteName.toLowerCase().replace(/ /g, "-")
     };
     props.savePalette(newPalette);
     navigate("../");
@@ -98,9 +115,19 @@ export const NewPalette: React.FC<
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Save Palette
-          </Button>
+          <ValidatorForm onSubmit={handleSubmit}>
+            <TextValidator
+              label="Palette Name"
+              name="newPaletteName"
+              value={names.newPaletteName}
+              onChange={handleChange}
+              validators={["required", "PaletteNameUnique"]}
+              errorMessages={["Enter Palette Name", "Name already used"]}
+            />
+            <Button variant="contained" color="primary" type="submit">
+              Save Palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -132,9 +159,9 @@ export const NewPalette: React.FC<
         />
         <ValidatorForm onSubmit={handleAddColor} instantValidate={false}>
           <TextValidator
-            name="newColorName"
-            value={newName}
-            onChange={handleNewNameChange}
+            name="newName"
+            value={names.newName}
+            onChange={handleChange}
             validators={["required", "isColorNameUnique", "isColorUnique"]}
             errorMessages={[
               "this field is required",
