@@ -42,14 +42,17 @@ export const useStyles = makeStyles((theme: Theme) =>
     drawerHeader: {
       display: "flex",
       alignItems: "center",
-      padding: "0 8px",
+      padding: "0",
       ...theme.mixins.toolbar,
       justifyContent: "flex-end"
     },
     content: {
       flexGrow: 1,
+      marginTop: "64px",
+      display: "flex",
+      flexWrap: "wrap",
       height: "calc(100vh - 64px)",
-      padding: theme.spacing(3),
+      padding: "0",
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
