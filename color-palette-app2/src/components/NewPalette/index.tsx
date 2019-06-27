@@ -92,6 +92,10 @@ export const NewPalette: React.FC<
     navigate("../");
   }
 
+  function removeColor(colorName: string) {
+    addColor(colors.filter(color => color.name !== colorName));
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -186,7 +190,12 @@ export const NewPalette: React.FC<
       >
         <div className={classes.drawerHeader} />
         {colors.map(c => (
-          <DraggableColorBox color={c.color} name={c.name} key={c.name} />
+          <DraggableColorBox
+            color={c.color}
+            name={c.name}
+            key={c.name}
+            handleClick={removeColor}
+          />
         ))}
       </main>
     </div>
