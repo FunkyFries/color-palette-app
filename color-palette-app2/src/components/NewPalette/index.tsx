@@ -11,9 +11,10 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { ChromePicker } from "react-color";
-import DraggableColorBox from "../DraggableColorBox/index";
+import DraggableColorList from "../DraggableColorList";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useStyles } from "./style";
+import arrayMove from "array-move";
 
 export const NewPalette: React.FC<
   RouteComponentProps & { savePalette: any; palettes: any }
@@ -94,6 +95,10 @@ export const NewPalette: React.FC<
 
   function removeColor(colorName: string) {
     addColor(colors.filter(color => color.name !== colorName));
+  }
+
+  function onSortEnd({ oldIndex, newIndex }: any) {
+    addColor(arrayMove(colors, oldIndex, newIndex));
   }
 
   return (
@@ -189,14 +194,12 @@ export const NewPalette: React.FC<
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map(c => (
-          <DraggableColorBox
-            color={c.color}
-            name={c.name}
-            key={c.name}
-            handleClick={removeColor}
-          />
-        ))}
+        <DraggableColorList
+          colors={colors}
+          removeColor={removeColor}
+          axis="xy"
+          onSortEnd={onSortEnd}
+        />
       </main>
     </div>
   );

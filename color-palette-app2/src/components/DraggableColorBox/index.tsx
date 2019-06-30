@@ -2,6 +2,7 @@ import React from "react";
 import chroma from "chroma-js";
 import { Div, BoxContent } from "./style";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { SortableElement } from "react-sortable-hoc";
 
 const DraggableColorBox: React.FC<{
   color: string;
@@ -23,4 +24,4 @@ const DraggableColorBox: React.FC<{
   );
 };
 
-export default DraggableColorBox;
+export default SortableElement(DraggableColorBox);

@@ -2,14 +2,12 @@ import styled from "styled-components";
 
 export const StyledHome = styled("div")`
   background-color: blue;
-  height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 `;
 
 export const Container = styled("div")`
-  width: 50%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -30,6 +28,7 @@ export const Nav = styled("nav")`
 
 export const Palettes = styled("div")`
   box-sizing: border-box;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 30%);
