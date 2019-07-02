@@ -16,12 +16,12 @@ export const Div = styled("div").attrs<{
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
-  ${({ isDarkColor }) =>
-    `&:hover svg {
-      color: ${isDarkColor ? "black" : "white"};
-      transition: all 0.3s ease-in-out;
-      transform: scale(1.5);
-    }`}
+  svg {
+    transition: all 0.2s ease-in-out;
+  }
+  svg:hover {
+    transform: scale(1.5);
+  }
 `;
 
 export const BoxContent = styled("div")`

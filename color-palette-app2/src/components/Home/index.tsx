@@ -13,6 +13,7 @@ export default class Home extends Component<Props & RouteComponentProps> {
   };
   render() {
     const { palettes } = this.props;
+    const templateRows = Math.ceil(palettes.length / 3);
     return (
       <StyledHome>
         <Container>
@@ -20,7 +21,7 @@ export default class Home extends Component<Props & RouteComponentProps> {
             <h1>React Colors</h1>
             <Link to="palette/new">Create New Palette</Link>
           </Nav>
-          <Palettes>
+          <Palettes templateRows={templateRows}>
             {palettes.map((palette: any) => (
               <MiniPalette
                 key={palette.id}
@@ -29,6 +30,7 @@ export default class Home extends Component<Props & RouteComponentProps> {
               />
             ))}
           </Palettes>
+          <div />
         </Container>
       </StyledHome>
     );
