@@ -18,9 +18,7 @@ const NewPaletteNavbar: React.FC<{
   handleDrawerOpen: any;
 }> = props => {
   const { classes, open, palettes, handleSubmit, handleDrawerOpen } = props;
-  const [newPaletteName, changeNewPaletteName] = React.useState({
-    newPaletteName: ""
-  });
+  const [paletteName, changeNewPaletteName] = React.useState("");
 
   React.useEffect(() => {
     ValidatorForm.addValidationRule("PaletteNameUnique", value => {
@@ -33,10 +31,7 @@ const NewPaletteNavbar: React.FC<{
 
   function handleChange(e: any) {
     e.persist();
-    changeNewPaletteName(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    changeNewPaletteName(e.target.value);
   }
 
   return (
@@ -62,11 +57,11 @@ const NewPaletteNavbar: React.FC<{
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
-          <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
+          <ValidatorForm onSubmit={() => handleSubmit(paletteName)}>
             <TextValidator
               label="Palette Name"
               name="newPaletteName"
-              value={newPaletteName}
+              value={paletteName}
               onChange={handleChange}
               validators={["required", "PaletteNameUnique"]}
               errorMessages={["Enter Palette Name", "Name already used"]}
