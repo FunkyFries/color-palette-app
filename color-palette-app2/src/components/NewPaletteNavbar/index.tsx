@@ -9,7 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useStyles } from "./style";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import PaletteMetaForm from "../PaletteMetaForm";
 
 const NewPaletteNavbar: React.FC<{
   open: boolean;
@@ -19,21 +19,7 @@ const NewPaletteNavbar: React.FC<{
 }> = props => {
   const classes = useStyles();
   const { open, palettes, handleSubmit, handleDrawerOpen } = props;
-  const [paletteName, changeNewPaletteName] = React.useState("");
 
-  React.useEffect(() => {
-    ValidatorForm.addValidationRule("PaletteNameUnique", value => {
-      return palettes.every(
-        ({ paletteName }: { paletteName: string }) =>
-          paletteName.toLowerCase() !== value.toLowerCase()
-      );
-    });
-  }, [palettes]);
-
-  function handleChange(e: any) {
-    e.persist();
-    changeNewPaletteName(e.target.value);
-  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -59,19 +45,7 @@ const NewPaletteNavbar: React.FC<{
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <ValidatorForm onSubmit={() => handleSubmit(paletteName)}>
-            <TextValidator
-              label="Palette Name"
-              name="newPaletteName"
-              value={paletteName}
-              onChange={handleChange}
-              validators={["required", "PaletteNameUnique"]}
-              errorMessages={["Enter Palette Name", "Name already used"]}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
           <Link to="../">
             <Button variant="contained" color="secondary">
               Go Back

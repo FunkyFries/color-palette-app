@@ -72,6 +72,7 @@ const ColorPickerForm: React.FC<{
         <AddColorButton
           variant="contained"
           color="primary"
+          paletteIsFull={paletteIsFull}
           currentcolor={currentColor}
           type="submit"
           disabled={paletteIsFull}

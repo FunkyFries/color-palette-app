@@ -9,7 +9,7 @@ export const AddColorButton = styled(Button).attrs<{
   style: {
     backgroundColor: props.paletteIsFull ? "grey" : props.currentcolor
   }
-}))<{ currentcolor: string }>`
+}))<{ currentcolor: string; paletteIsFull: boolean }>`
   width: 100%;
   padding: 0.8rem !important;
   font-size: 1.5rem !important;
