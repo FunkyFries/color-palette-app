@@ -70,7 +70,6 @@ export const NewPalette: React.FC<
     <div className={classes.root}>
       <NewPaletteNavbar
         open={open}
-        classes={classes}
         palettes={palettes}
         handleSubmit={handleSubmit}
         handleDrawerOpen={handleDrawerOpen}
@@ -89,26 +88,36 @@ export const NewPalette: React.FC<
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Typography variant="h4">Design Your Palette</Typography>
-        <div>
-          <Button variant="contained" color="secondary" onClick={clearColors}>
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={randomColor}
-            disabled={paletteIsFull}
-          >
-            {paletteIsFull ? "Palette Full" : "Random Color"}
-          </Button>
+        <div className={classes.container}>
+          <Typography variant="h4" gutterBottom>
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={clearColors}
+              className={classes.button}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={randomColor}
+              disabled={paletteIsFull}
+              className={classes.button}
+            >
+              {paletteIsFull ? "Palette Full" : "Random Color"}
+            </Button>
+          </div>
+          <ColorPickerForm
+            paletteIsFull={paletteIsFull}
+            handleAddColor={handleAddColor}
+            palettes={palettes}
+            colors={colors}
+          />
         </div>
-        <ColorPickerForm
-          paletteIsFull={paletteIsFull}
-          handleAddColor={handleAddColor}
-          palettes={palettes}
-          colors={colors}
-        />
       </Drawer>
       <main
         className={clsx(classes.content, {

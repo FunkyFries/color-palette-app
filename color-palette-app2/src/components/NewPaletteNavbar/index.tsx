@@ -8,16 +8,17 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useStyles } from "./style";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const NewPaletteNavbar: React.FC<{
-  classes: any;
   open: boolean;
   palettes: any;
   handleSubmit: any;
   handleDrawerOpen: any;
 }> = props => {
-  const { classes, open, palettes, handleSubmit, handleDrawerOpen } = props;
+  const classes = useStyles();
+  const { open, palettes, handleSubmit, handleDrawerOpen } = props;
   const [paletteName, changeNewPaletteName] = React.useState("");
 
   React.useEffect(() => {
@@ -33,9 +34,8 @@ const NewPaletteNavbar: React.FC<{
     e.persist();
     changeNewPaletteName(e.target.value);
   }
-
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -55,8 +55,10 @@ const NewPaletteNavbar: React.FC<{
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Create A Palette
           </Typography>
+        </Toolbar>
+        <div className={classes.navBtns}>
           <ValidatorForm onSubmit={() => handleSubmit(paletteName)}>
             <TextValidator
               label="Palette Name"
@@ -66,16 +68,16 @@ const NewPaletteNavbar: React.FC<{
               validators={["required", "PaletteNameUnique"]}
               errorMessages={["Enter Palette Name", "Name already used"]}
             />
-            <Link to="../">
-              <Button variant="contained" color="secondary">
-                Go Back
-              </Button>
-            </Link>
             <Button variant="contained" color="primary" type="submit">
               Save Palette
             </Button>
           </ValidatorForm>
-        </Toolbar>
+          <Link to="../">
+            <Button variant="contained" color="secondary">
+              Go Back
+            </Button>
+          </Link>
+        </div>
       </AppBar>
     </div>
   );
