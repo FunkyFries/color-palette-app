@@ -21,7 +21,7 @@ export const NewPalette: React.FC<
   const [colors, addColor] = React.useState(seedPalettes[0].colors);
 
   const { palettes, savePalette } = props;
-  const paletteIsFull = colors.length >= maxColors;
+  const paletteisfull = colors.length >= maxColors;
 
   function handleDrawerClose() {
     setOpen(false);
@@ -35,13 +35,14 @@ export const NewPalette: React.FC<
     addColor([...colors, newColor]);
   }
 
-  function handleSubmit(newPaletteName: any) {
-    const newPalette = {
-      paletteName: newPaletteName,
+  function handleSubmit(newPalette: any) {
+    const palette = {
+      paletteName: newPalette.paletteName,
       colors: colors,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-")
+      id: newPalette.paletteName.toLowerCase().replace(/ /g, "-"),
+      emoji: newPalette.emoji
     };
-    savePalette(newPalette);
+    savePalette(palette);
     navigate("../");
   }
 
@@ -105,14 +106,14 @@ export const NewPalette: React.FC<
               variant="contained"
               color="primary"
               onClick={randomColor}
-              disabled={paletteIsFull}
+              disabled={paletteisfull}
               className={classes.button}
             >
-              {paletteIsFull ? "Palette Full" : "Random Color"}
+              {paletteisfull ? "Palette Full" : "Random Color"}
             </Button>
           </div>
           <ColorPickerForm
-            paletteIsFull={paletteIsFull}
+            paletteisfull={paletteisfull}
             handleAddColor={handleAddColor}
             palettes={palettes}
             colors={colors}

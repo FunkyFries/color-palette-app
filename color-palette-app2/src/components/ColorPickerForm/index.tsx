@@ -4,7 +4,7 @@ import { ValidatorForm } from "react-material-ui-form-validator";
 import { AddColorButton, ColorNameInput } from "./style";
 
 const ColorPickerForm: React.FC<{
-  paletteIsFull: boolean;
+  paletteisfull: boolean;
   handleAddColor: any;
   palettes: any;
   colors: {
@@ -12,7 +12,7 @@ const ColorPickerForm: React.FC<{
     color: string;
   }[];
 }> = props => {
-  const { paletteIsFull, handleAddColor, palettes, colors } = props;
+  const { paletteisfull, handleAddColor, palettes, colors } = props;
   const [currentColor, setColor] = React.useState("teal");
   const [newColorName, changeName] = React.useState("");
 
@@ -46,6 +46,8 @@ const ColorPickerForm: React.FC<{
     changeName("");
   }
 
+  const addcolortext = paletteisfull ? "Palette Full" : "Add Color";
+
   return (
     <div>
       <ChromePicker
@@ -72,12 +74,11 @@ const ColorPickerForm: React.FC<{
         <AddColorButton
           variant="contained"
           color="primary"
-          paletteIsFull={paletteIsFull}
           currentcolor={currentColor}
           type="submit"
-          disabled={paletteIsFull}
+          disabled={paletteisfull}
         >
-          {paletteIsFull ? "Palette Full" : "Add Color"}
+          {addcolortext}
         </AddColorButton>
       </ValidatorForm>
     </div>

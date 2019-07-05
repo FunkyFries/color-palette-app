@@ -19,6 +19,13 @@ const NewPaletteNavbar: React.FC<{
 }> = props => {
   const classes = useStyles();
   const { open, palettes, handleSubmit, handleDrawerOpen } = props;
+  const [formShowing, toggleForm] = React.useState(false);
+
+  function handleClick() {
+    toggleForm(prev => {
+      return !prev;
+    });
+  }
 
   return (
     <div className={classes.root}>
@@ -45,14 +52,32 @@ const NewPaletteNavbar: React.FC<{
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
           <Link to="../">
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
               Go Back
             </Button>
           </Link>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClick}
+            className={classes.button}
+          >
+            Save
+          </Button>
         </div>
       </AppBar>
+      {formShowing && (
+        <PaletteMetaForm
+          palettes={palettes}
+          handleSubmit={handleSubmit}
+          hideForm={handleClick}
+        />
+      )}
     </div>
   );
 };
