@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { DRAWER_WIDTH } from "../constants";
 
 export const H1 = styled("h1")`
   font-size: 1.5rem;
 `;
-
-const drawerWidth = 400;
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,11 +12,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex"
     },
     drawer: {
-      width: drawerWidth,
+      width: DRAWER_WIDTH,
       flexShrink: 0
     },
     drawerPaper: {
-      width: drawerWidth,
+      width: DRAWER_WIDTH,
       display: "flex",
       alignItems: "center"
     },
@@ -39,7 +38,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
       }),
-      marginLeft: -drawerWidth
+      marginLeft: -DRAWER_WIDTH
     },
     contentShift: {
       transition: theme.transitions.create("margin", {
