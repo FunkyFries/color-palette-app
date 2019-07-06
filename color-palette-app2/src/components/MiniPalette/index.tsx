@@ -1,5 +1,5 @@
 import React from "react";
-import { MiniBox, StyledMiniPalette, Colors, H5, Span } from "./style";
+import { MiniBox, StyledMiniPalette, Colors, H5, Span, Delete } from "./style";
 
 const MiniPalette = (props: any) => {
   const { paletteName, emoji, colors, id, handleClick } = props;
@@ -14,6 +14,7 @@ const MiniPalette = (props: any) => {
   return (
     <div>
       <StyledMiniPalette onClick={goToPalette}>
+        <Delete />
         <Colors>{miniColorBoxes}</Colors>
         <H5>
           {paletteName}

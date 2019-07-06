@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 export const StyledMiniPalette = styled("div")`
   background-color: white;
@@ -7,9 +8,7 @@ export const StyledMiniPalette = styled("div")`
   padding: 0.5rem;
   position: relative;
   overflow: hidden;
-  :hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export const Colors = styled("div")`
@@ -50,4 +49,22 @@ export const MiniBox = styled("div").attrs<{ background: string }>(props => ({
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
+`;
+
+export const Delete = styled(DeleteIcon)`
+  color: white;
+  background-color: #eb3d30;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s ease-in-out !important;
+
+  ${StyledMiniPalette}: hover & {
+    opacity: 1;
+  }
 `;
