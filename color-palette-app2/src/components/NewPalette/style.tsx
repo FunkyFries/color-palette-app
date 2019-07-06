@@ -23,6 +23,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     drawerHeader: {
       display: "flex",
       alignItems: "center",
+      width: "100%",
       padding: "0",
       ...theme.mixins.toolbar,
       justifyContent: "flex-end"

@@ -6,12 +6,20 @@ import { NewPalette } from "./components/NewPalette/index";
 import Palette from "./components/Palette/index";
 import SingleColorPalette from "./components/SingleColorPalette/index";
 
+const savedPalettes = localStorage.getItem("palettes");
+
 class App extends Component {
   state = {
-    palettes: seedPalettes
+    palettes: savedPalettes !== null ? JSON.parse(savedPalettes) : seedPalettes
   };
   savePalette = (newPalette: any) => {
-    this.setState({ palettes: [...this.state.palettes, newPalette] });
+    this.setState(
+      { palettes: [...this.state.palettes, newPalette] },
+      this.syncLocalStorage
+    );
+  };
+  syncLocalStorage = () => {
+    localStorage.setItem("palettes", JSON.stringify(this.state.palettes));
   };
   render() {
     return (
