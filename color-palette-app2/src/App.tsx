@@ -18,6 +18,14 @@ class App extends Component {
       this.syncLocalStorage
     );
   };
+  deletePalette = (id: any) => {
+    this.setState(
+      (st: any) => ({
+        palettes: st.palettes.filter((palette: any) => palette.id !== id)
+      }),
+      this.syncLocalStorage
+    );
+  };
   syncLocalStorage = () => {
     localStorage.setItem("palettes", JSON.stringify(this.state.palettes));
   };
@@ -25,7 +33,11 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Home path="/" palettes={this.state.palettes} />
+          <Home
+            path="/"
+            palettes={this.state.palettes}
+            deletePalette={this.deletePalette}
+          />
           <NewPalette
             path="/palette/new"
             savePalette={this.savePalette}

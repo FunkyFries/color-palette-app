@@ -5,6 +5,7 @@ import MiniPalette from "../MiniPalette";
 
 type Props = {
   palettes: any;
+  deletePalette: any;
 };
 
 export default class Home extends Component<Props & RouteComponentProps> {
@@ -12,7 +13,7 @@ export default class Home extends Component<Props & RouteComponentProps> {
     navigate(`palette/${id}`);
   };
   render() {
-    const { palettes } = this.props;
+    const { palettes, deletePalette } = this.props;
     const templateRows = Math.ceil(palettes.length / 3);
     return (
       <StyledHome>
@@ -24,6 +25,7 @@ export default class Home extends Component<Props & RouteComponentProps> {
           <Palettes templateRows={templateRows}>
             {palettes.map((palette: any) => (
               <MiniPalette
+                deletePalette={deletePalette}
                 key={palette.id}
                 {...palette}
                 handleClick={this.goToPalette}
