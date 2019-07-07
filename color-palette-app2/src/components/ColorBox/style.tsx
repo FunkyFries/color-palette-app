@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { sizes } from "../constants";
 
 export const StyledBox = styled("div").attrs<{
   background: any;
@@ -15,6 +16,18 @@ export const StyledBox = styled("div").attrs<{
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
+
+  ${sizes.down("lg")} {
+    width: 25%;
+  }
+
+  ${sizes.down("md")} {
+    width: 50%;
+  }
+
+  ${sizes.down("xs")} {
+    width: 100%;
+  }
 `;
 
 export const H1 = styled("h1")`
