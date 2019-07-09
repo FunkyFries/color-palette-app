@@ -46,24 +46,25 @@ class ColorBox extends Component<Props, State> {
     const { active } = this.state;
     const isDarkColor = chroma(background).luminance() <= 0.08;
     return (
-      <StyledBox background={background} isDarkColor={isDarkColor}>
-        <CopyOverlay background={background} active={active} />
-        <CopyOverlayMessage active={active}>
-          <H1>Copied!</H1>
-          <P>{background}</P>
-        </CopyOverlayMessage>
-        <div>
-          <BoxContent>
-            <span>{name}</span>
-          </BoxContent>
-          <CopyToClipboard text={background} onCopy={this.changeCopyState}>
+      <CopyToClipboard text={background} onCopy={this.changeCopyState}>
+        <StyledBox background={background} isDarkColor={isDarkColor}>
+          <CopyOverlay background={background} active={active} />
+          <CopyOverlayMessage active={active}>
+            <H1>Copied!</H1>
+            <P>{background}</P>
+          </CopyOverlayMessage>
+          <div>
+            <BoxContent>
+              <span>{name}</span>
+            </BoxContent>
+
             <CopyButton>Copy</CopyButton>
-          </CopyToClipboard>
-        </div>
-        {showButton && (
-          <MoreButton onClick={this.handleMoreClick}>More</MoreButton>
-        )}
-      </StyledBox>
+          </div>
+          {showButton && (
+            <MoreButton onClick={this.handleMoreClick}>More</MoreButton>
+          )}
+        </StyledBox>
+      </CopyToClipboard>
     );
   }
 }

@@ -59,7 +59,7 @@ export default class SingleColorPalette extends Component<
         <Navbar changeFormat={this.changeFormat} showingAllColors={false} />
         <ColorBoxes>
           {colorBoxes}
-          <StyledBox background="black">
+          <StyledBox>
             <GoBackLink to="../">Go Back</GoBackLink>
           </StyledBox>
         </ColorBoxes>

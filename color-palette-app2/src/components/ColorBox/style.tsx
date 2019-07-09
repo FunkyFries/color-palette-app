@@ -38,6 +38,10 @@ export const H1 = styled("h1")`
   text-align: center;
   margin-bottom: 0;
   padding: 1rem;
+
+  ${sizes.down("xs")} {
+    font-size: 4rem;
+  }
 `;
 
 export const BoxContent = styled("div")`
@@ -56,7 +60,7 @@ export const CopyOverlay = styled("div").attrs<{ background: any }>(props => ({
   }
 }))<{ active: boolean; background: string }>`
   opacity: 0;
-  z-index: 0;
+  z-index: -2;
   width: 100%;
   height: 100%;
   transform: scale(0.1);
@@ -65,26 +69,27 @@ export const CopyOverlay = styled("div").attrs<{ background: any }>(props => ({
     active &&
     `
     opacity: 1;
-    transform: scale(9);
+    transform: scale(50);
     z-index: 10;
     position: absolute;
     `};
 `;
 
 export const CopyOverlayMessage = styled("div")<{ active: boolean }>`
+  z-index: -1;
   opacity: 0;
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   font-size: 2rem;
   transform: scale(0.1);
   color: inherit;
+  width: 100vw;
+  top: 30vh;
+  left: 0;
 
   ${({ active }) =>
     active &&
@@ -92,12 +97,13 @@ export const CopyOverlayMessage = styled("div")<{ active: boolean }>`
   opacity: 1;
   transform: scale(1);
   z-index: 15;
-  transition: all 0.4s ease-in-out;
+  transition: all 1s ease-in-out;
   transition-delay: 0.3s;
-  `}
+  `};
 `;
 
 export const CopyButton = styled("button")`
+  cursor: pointer;
   color: inherit;
   width: 100px;
   height: 30px;

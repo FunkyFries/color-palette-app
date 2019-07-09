@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { sizes } from "../constants";
 import { Link } from "@reach/router";
 
 export const PaletteDiv = styled("div")`
@@ -28,17 +29,25 @@ export const GoBackLink = styled(Link)`
   }
 `;
 
-export const StyledBox = styled("div").attrs<{ background: any }>(props => ({
-  style: {
-    background: props.background
-  }
-}))<{ background: string }>`
+export const StyledBox = styled("div")`
   width: 20%;
   margin: 0;
+  background: black;
   justify-content: center;
   align-items: center;
   display: flex;
   position: relative;
-  cursor: pointer;
   text-transform: uppercase;
+
+  ${sizes.down("lg")} {
+    width: 25%;
+  }
+
+  ${sizes.down("md")} {
+    width: 50%;
+  }
+
+  ${sizes.down("xs")} {
+    width: 100%;
+  }
 `;

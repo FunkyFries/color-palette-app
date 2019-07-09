@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { sizes } from "../constants";
 
 export const Div = styled("div").attrs<{
   background: string;
@@ -22,6 +23,18 @@ export const Div = styled("div").attrs<{
   svg:hover {
     transform: scale(1.5);
   }
+  ${sizes.down("lg")} {
+    width: 25%;
+    height: 20%;
+  }
+  ${sizes.down("md")} {
+    width: 50%;
+    height: 10%;
+  }
+  ${sizes.down("sm")} {
+    width: 100%;
+    height: 5%;
+  }
 `;
 
 export const BoxContent = styled("div")`
@@ -34,4 +47,7 @@ export const BoxContent = styled("div")`
   letter-spacing: 1px;
   display: flex;
   justify-content: space-between;
+  ${sizes.down("sm")} {
+    padding: 0 10px;
+  }
 `;

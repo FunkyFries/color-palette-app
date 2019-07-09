@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "@reach/router";
+import { sizes } from "../constants";
 
 export const StyledNavbar = styled("header")`
   display: flex;
@@ -23,9 +24,15 @@ export const Logo = styled(Link)`
   :hover {
     background-color: #e9e9e9;
   }
+  ${sizes.down("xs")} {
+    display: none;
+  }
 `;
 
 export const SliderStyles = styled("div")`
   display: flex;
   align-items: center;
+  ${sizes.down("md")} {
+    width: 50%;
+  }
 `;

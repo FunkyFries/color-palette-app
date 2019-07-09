@@ -21,6 +21,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center"
     },
     drawerHeader: {
+      height: "64px",
       display: "flex",
       alignItems: "center",
       width: "100%",
@@ -30,7 +31,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
-      marginTop: "64px",
+      marginTop: 0,
       display: "flex",
       flexWrap: "wrap",
       height: "calc(100vh - 64px)",

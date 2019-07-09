@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { DRAWER_WIDTH } from "../constants";
+import { DRAWER_WIDTH, sizes } from "../constants";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,10 +34,16 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginRight: "1rem",
       "& a": {
         textDecoration: "none"
+      },
+      [sizes.down("sm")]: {
+        "& button": { padding: 0, marginLeft: "-10px" }
       }
     },
     button: {
       margin: "0 0.5rem"
+    },
+    [sizes.down("sm")]: {
+      "& button": { padding: 0 }
     }
   })
 );
