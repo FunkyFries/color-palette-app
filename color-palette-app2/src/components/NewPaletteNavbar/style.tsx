@@ -35,15 +35,12 @@ export const useStyles = makeStyles((theme: Theme) =>
       "& a": {
         textDecoration: "none"
       },
-      [sizes.down("sm")]: {
-        "& button": { padding: 0, marginLeft: "-10px" }
+      [sizes.down("xs")]: {
+        "& button": { padding: "0 0.3rem", margin: "0.1rem" }
       }
     },
     button: {
       margin: "0 0.5rem"
-    },
-    [sizes.down("sm")]: {
-      "& button": { padding: 0 }
     }
   })
 );
