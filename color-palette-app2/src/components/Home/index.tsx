@@ -20,7 +20,7 @@ export default class Home extends Component<Props & RouteComponentProps> {
         <Container>
           <Nav>
             <h1>React Colors</h1>
-            <Link to="palette/new">Create New Palette</Link>
+            <Link to="palette/new">Create Palette</Link>
           </Nav>
           <Palettes templateRows={templateRows}>
             {palettes.map((palette: any) => (

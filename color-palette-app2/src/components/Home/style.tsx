@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { sizes } from "../constants";
 
 export const StyledHome = styled("div")`
   background-color: blue;
@@ -10,9 +11,13 @@ export const StyledHome = styled("div")`
 
 export const Container = styled("div")`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
+  font-size: 0.9rem;
+  ${sizes.down("lg")} {
+    width: 80%;
+  }
 `;
 
 export const Nav = styled("nav")`
@@ -35,4 +40,12 @@ export const Palettes = styled("div")<{ templateRows: number }>`
   display: grid;
   grid-template-columns: repeat(3, 30%);
   grid-gap: 40px;
+  ${sizes.down("md")} {
+    grid-template-columns: repeat(2, 50%);
+    grid-gap: 35px;
+  }
+  ${sizes.down("xs")} {
+    grid-template-columns: repeat(1, 100%);
+    grid-gap: 30px;
+  }
 `;
