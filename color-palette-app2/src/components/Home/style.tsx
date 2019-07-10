@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { sizes } from "../constants";
+import bg from "./bg.svg";
 
 export const StyledHome = styled("div")`
-  background-color: blue;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   min-height: 100vh;
+  // background by SVGBackgrounds.com
+  background-color: #394bad;
+  background-image: url(${bg});
 `;
 
 export const Container = styled("div")`
