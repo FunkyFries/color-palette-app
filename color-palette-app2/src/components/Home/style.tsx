@@ -43,6 +43,7 @@ export const Palettes = styled("div")<{ templateRows: number }>`
   display: grid;
   grid-template-columns: repeat(3, 30%);
   grid-gap: 40px;
+
   ${sizes.down("md")} {
     grid-template-columns: repeat(2, 50%);
     grid-gap: 35px;

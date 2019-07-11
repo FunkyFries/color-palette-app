@@ -17,16 +17,14 @@ const MiniPalette = (props: any) => {
   }
 
   return (
-    <div>
-      <StyledMiniPalette onClick={goToPalette}>
-        <Delete onClick={handleDelete} />
-        <Colors>{miniColorBoxes}</Colors>
-        <H5>
-          {paletteName}
-          <Span>{emoji}</Span>
-        </H5>
-      </StyledMiniPalette>
-    </div>
+    <StyledMiniPalette onClick={goToPalette}>
+      <Delete onClick={handleDelete} />
+      <Colors>{miniColorBoxes}</Colors>
+      <H5>
+        {paletteName}
+        <Span>{emoji}</Span>
+      </H5>
+    </StyledMiniPalette>
   );
 };
 

@@ -9,6 +9,14 @@ export const StyledMiniPalette = styled("div")`
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  &.fade-exit: {
+    opacity: 1;
+  }
+
+  &.fade-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+  }
 `;
 
 export const Colors = styled("div")`
