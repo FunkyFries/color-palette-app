@@ -131,6 +131,7 @@ export const NewPalette: React.FC<
           removeColor={removeColor}
           axis="xy"
           onSortEnd={onSortEnd}
+          distance={20}
         />
       </main>
     </div>
