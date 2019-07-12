@@ -2,7 +2,7 @@ import React from "react";
 import { MiniBox, StyledMiniPalette, Colors, H5, Span, Delete } from "./style";
 
 const MiniPalette = (props: any) => {
-  const { paletteName, emoji, colors, id, handleClick, deletePalette } = props;
+  const { paletteName, emoji, colors, id, handleClick, openDialog } = props;
   const miniColorBoxes = colors.map((color: any) => (
     <MiniBox background={color.color} key={color.name} />
   ));
@@ -13,7 +13,7 @@ const MiniPalette = (props: any) => {
 
   function handleDelete(e: any) {
     e.stopPropagation();
-    deletePalette(id);
+    openDialog(id);
   }
 
   return (
