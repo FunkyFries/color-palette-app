@@ -38,6 +38,7 @@ const PaletteMetaForm: React.FC<{
 
   function savePalette(emoji: any) {
     const newPalette = { paletteName: paletteName, emoji: emoji.native };
+    updateStage("");
     handleSubmit(newPalette);
   }
 
