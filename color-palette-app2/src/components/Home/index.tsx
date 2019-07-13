@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteComponentProps, navigate, Link } from "@reach/router";
+import { RouteComponentProps, Link } from "@reach/router";
 import { StyledHome, Container, Nav, Palettes } from "./style";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import MiniPalette from "../MiniPalette";
@@ -25,24 +25,20 @@ const Home: React.FC<Props & RouteComponentProps> = (props: any) => {
   const [deletingId, setDeletingId] = React.useState("");
   const { palettes, deletePalette } = props;
 
-  const goToPalette = (id: string) => {
-    navigate(`palette/${id}`);
-  };
-
-  const openDialog = (id: string) => {
+  const openDialog = React.useCallback((id: string) => {
     setOpen(true);
     setDeletingId(id);
-  };
+  }, []);
 
-  const closeDialog = () => {
+  function closeDialog() {
     setOpen(false);
     setDeletingId("");
-  };
+  }
 
-  const deleteMiniPalette = () => {
+  function deleteMiniPalette() {
     deletePalette(deletingId);
     setOpen(false);
-  };
+  }
 
   const templateRows = Math.ceil(palettes.length / 3);
   return (
@@ -60,7 +56,6 @@ const Home: React.FC<Props & RouteComponentProps> = (props: any) => {
                   openDialog={openDialog}
                   key={palette.id}
                   {...palette}
-                  handleClick={goToPalette}
                 />
               </CSSTransition>
             ))}
