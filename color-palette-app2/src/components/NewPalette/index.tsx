@@ -60,10 +60,16 @@ const NewPalette: React.FC<
 
   function randomColor() {
     const randomPalette = palettes[Math.floor(Math.random() * palettes.length)];
-    const randomColor =
-      randomPalette.colors[
-        Math.floor(Math.random() * randomPalette.colors.length)
-      ];
+    let randomColor: any;
+    let isDuplicateColor = true;
+    const randomIndex = () =>
+      Math.floor(Math.random() * randomPalette.colors.length);
+    const duplicateChecker = () =>
+      colors.some(color => color.name === randomColor.name);
+    while (isDuplicateColor) {
+      randomColor = randomPalette.colors[randomIndex()];
+      isDuplicateColor = duplicateChecker();
+    }
     addColor([...colors, randomColor]);
   }
 

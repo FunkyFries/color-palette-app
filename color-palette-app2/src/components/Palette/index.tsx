@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { RouteComponentProps } from "@reach/router";
+import { RouteComponentProps, Redirect } from "@reach/router";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import ColorBox from "../ColorBox";
@@ -36,30 +36,34 @@ class Palette extends Component<Props & RouteComponentProps> {
   palette = generatePalette(this.findPalette(this.props.id));
 
   render() {
-    const { colors, paletteName, emoji } = this.palette;
-    const { level, format } = this.state;
-    const colorBoxes = colors[level].map((color: any) => (
-      <ColorBox
-        key={color.id}
-        background={color[format]}
-        name={color.name}
-        id={color.id}
-        navigate={this.props.navigate}
-        showButton
-      />
-    ));
-    return (
-      <PaletteDiv>
-        <Navbar
-          level={level}
-          changeLevel={this.changeLevel}
-          changeFormat={this.changeFormat}
-          showingAllColors={true}
+    if (this.palette !== undefined) {
+      const { colors, paletteName, emoji } = this.palette;
+      const { level, format } = this.state;
+      const colorBoxes = colors[level].map((color: any) => (
+        <ColorBox
+          key={color.id}
+          background={color[format]}
+          name={color.name}
+          id={color.id}
+          navigate={this.props.navigate}
+          showButton
         />
-        <ColorBoxes>{colorBoxes}</ColorBoxes>
-        <Footer paletteName={paletteName} emoji={emoji} />
-      </PaletteDiv>
-    );
+      ));
+      return (
+        <PaletteDiv>
+          <Navbar
+            level={level}
+            changeLevel={this.changeLevel}
+            changeFormat={this.changeFormat}
+            showingAllColors={true}
+          />
+          <ColorBoxes>{colorBoxes}</ColorBoxes>
+          <Footer paletteName={paletteName} emoji={emoji} />
+        </PaletteDiv>
+      );
+    } else {
+      return <Redirect noThrow to="/" />;
+    }
   }
 }
 
