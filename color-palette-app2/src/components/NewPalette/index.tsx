@@ -1,19 +1,19 @@
 import React from "react";
 import { RouteComponentProps, navigate } from "@reach/router";
-import NewPaletteNavbar from "../NewPaletteNavbar";
-import ColorPickerForm from "../ColorPickerForm";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import arrayMove from "array-move";
+import NewPaletteNavbar from "../NewPaletteNavbar";
+import ColorPickerForm from "../ColorPickerForm";
 import DraggableColorList from "../DraggableColorList";
 import { useStyles } from "./style";
-import arrayMove from "array-move";
 import seedPalettes from "../Helpers/seedPalettes";
 
-export const NewPalette: React.FC<
+const NewPalette: React.FC<
   RouteComponentProps & { savePalette: any; palettes: any; maxColors?: number }
 > = ({ maxColors = 20, ...props }) => {
   const classes = useStyles();
@@ -137,3 +137,5 @@ export const NewPalette: React.FC<
     </div>
   );
 };
+
+export default NewPalette;

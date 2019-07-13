@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import { RouteComponentProps } from "@reach/router";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import ColorBox from "../ColorBox";
-import { generatePalette } from "../Helpers/colorHelpers";
-import { RouteComponentProps } from "@reach/router";
 import { PaletteDiv, ColorBoxes } from "./style";
+import { generatePalette } from "../Helpers/colorHelpers";
 
 type Props = {
   paletteName?: string;

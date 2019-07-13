@@ -8,8 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
-import { useStyles } from "./style";
 import PaletteMetaForm from "../PaletteMetaForm";
+import { useStyles } from "./style";
 
 const NewPaletteNavbar: React.FC<{
   open: boolean;

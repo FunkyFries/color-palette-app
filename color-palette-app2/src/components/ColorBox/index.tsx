@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import chroma from "chroma-js";
 import {
   StyledBox,
   CopyOverlay,
@@ -9,8 +11,6 @@ import {
   CopyButton,
   MoreButton
 } from "./style";
-import CopyToClipboard from "react-copy-to-clipboard";
-import chroma from "chroma-js";
 
 type Props = {
   background: string;

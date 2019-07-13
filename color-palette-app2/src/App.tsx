@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Redirect } from "@reach/router";
-import seedPalettes from "./components/Helpers/seedPalettes";
-import Home from "./components/Home";
-import { NewPalette } from "./components/NewPalette";
-import Palette from "./components/Palette";
-import SingleColorPalette from "./components/SingleColorPalette/index";
 import PosedRouter from "./components/PosedRouter";
+import Home from "./components/Home";
+import Palette from "./components/Palette";
+import SingleColorPalette from "./components/SingleColorPalette";
+import NewPalette from "./components/NewPalette";
+import seedPalettes from "./components/Helpers/seedPalettes";
 
 const savedPalettes = localStorage.getItem("palettes");
 
@@ -31,23 +31,24 @@ class App extends Component {
     localStorage.setItem("palettes", JSON.stringify(this.state.palettes));
   };
   render() {
+    const { palettes } = this.state;
     return (
       <div className="App">
         <PosedRouter>
           <Home
             path="/"
-            palettes={this.state.palettes}
+            palettes={palettes}
             deletePalette={this.deletePalette}
           />
           <NewPalette
             path="/palette/new"
             savePalette={this.savePalette}
-            palettes={this.state.palettes}
+            palettes={palettes}
           />
-          <Palette path="/palette/:id" palettes={this.state.palettes} />
+          <Palette path="/palette/:id" palettes={palettes} />
           <SingleColorPalette
             path="/palette/:paletteId/:colorId"
-            palettes={this.state.palettes}
+            palettes={palettes}
           />
           <Redirect default noThrow from="*" to="/" />
         </PosedRouter>

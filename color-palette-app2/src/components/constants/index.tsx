@@ -1,9 +1,6 @@
 export const DRAWER_WIDTH = 400;
 
 export const sizes = {
-  // up() {
-
-  // },
   down(size: string) {
     const sizes: { [index: string]: string } = {
       xs: "575.98px",

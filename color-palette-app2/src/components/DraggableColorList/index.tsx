@@ -1,7 +1,7 @@
 import React from "react";
-import DraggableColorBox from "../DraggableColorBox";
 import styled from "styled-components";
 import { SortableContainer } from "react-sortable-hoc";
+import DraggableColorBox from "../DraggableColorBox";
 
 const Div = styled("div")`
   height: 100%;
